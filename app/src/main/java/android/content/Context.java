@@ -267,6 +267,7 @@ public abstract class Context {
     public static final int BIND_AUTO_CREATE = 0x0001;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: include debugging help for mismatched
      * calls to unbind.  When this flag is set, the callstack of the following
      * {@link #unbindService} call is retained, to be printed if a later
@@ -274,6 +275,8 @@ public abstract class Context {
      * information about the binding that was made for the lifetime of the app,
      * resulting in a leak -- this should only be used for debugging.
      */
+    //使用此标志绑定服务之后的unBindService
+    //方法会无效。 这种方法会引起内存泄露，只能在调试时使用
     public static final int BIND_DEBUG_UNBIND = 0x0002;
 
     /**
