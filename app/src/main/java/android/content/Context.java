@@ -121,6 +121,7 @@ public abstract class Context {
     public @interface DatabaseMode {}
 
     /**
+     * ok>>
      * File creation mode: the default mode, where the created file can only
      * be accessed by the calling application (or all applications sharing the
      * same user ID).
@@ -128,6 +129,7 @@ public abstract class Context {
     public static final int MODE_PRIVATE = 0x0000;
 
     /**
+     * ok>>
      * File creation mode: allow all other applications to have read access to
      * the created file.
      * <p>
@@ -148,6 +150,7 @@ public abstract class Context {
     public static final int MODE_WORLD_READABLE = 0x0001;
 
     /**
+     * ok>>
      * File creation mode: allow all other applications to have write access to
      * the created file.
      * <p>
@@ -168,6 +171,7 @@ public abstract class Context {
     public static final int MODE_WORLD_WRITEABLE = 0x0002;
 
     /**
+     * ok>>
      * File creation mode: for use with {@link #openFileOutput}, if the file
      * already exists then write data to the end of the existing file
      * instead of erasing it.
@@ -176,6 +180,7 @@ public abstract class Context {
     public static final int MODE_APPEND = 0x8000;
 
     /**
+     * ok>>
      * SharedPreference loading flag: when set, the file on disk will
      * be checked for modification even if the shared preferences
      * instance is already loaded in this process.  This behavior is
@@ -203,6 +208,7 @@ public abstract class Context {
     public static final int MODE_MULTI_PROCESS = 0x0004;
 
     /**
+     * ok>>
      * Database open flag: when set, the database is opened with write-ahead
      * logging enabled by default.
      *
@@ -213,6 +219,7 @@ public abstract class Context {
     public static final int MODE_ENABLE_WRITE_AHEAD_LOGGING = 0x0008;
 
     /**
+     * ok>>
      * Database open flag: when set, the database is opened without support for
      * localized collators.
      *
@@ -1515,6 +1522,7 @@ public abstract class Context {
     public abstract File getDir(String name, @FileMode int mode);
 
     /**
+     * ok>>
      * Open a new private SQLiteDatabase associated with this Context's
      * application package. Create the database file if it doesn't exist.
      *
@@ -1534,6 +1542,7 @@ public abstract class Context {
             @DatabaseMode int mode, CursorFactory factory);
 
     /**
+     * ok>>
      * Open a new private SQLiteDatabase associated with this Context's
      * application package. Creates the database file if it doesn't exist.
      * <p>
@@ -2844,6 +2853,7 @@ public abstract class Context {
     public abstract boolean stopServiceAsUser(Intent service, UserHandle user);
 
     /**
+     * ok>>
      * Connect to an application service, creating it if needed.  This defines
      * a dependency between your application and the service.  The given
      * <var>conn</var> will receive the service object when it is created and be
