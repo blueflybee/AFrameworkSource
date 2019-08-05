@@ -264,6 +264,9 @@ public abstract class Context {
      * {@link #BIND_ADJUST_WITH_ACTIVITY} set for them in order to achieve
      * the same result.
      */
+    //若绑定服务时服务未启动，则会自动启动服务。 注意，这种情况下服务的onStartCommand
+    //仍然未被调用（它只会在显式调用startService
+    //时才会被调用）。
     public static final int BIND_AUTO_CREATE = 0x0001;
 
     /**
@@ -280,6 +283,7 @@ public abstract class Context {
     public static final int BIND_DEBUG_UNBIND = 0x0002;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: don't allow this binding to raise
      * the target service's process to the foreground scheduling priority.
      * It will still be raised to at least the same memory priority
@@ -289,9 +293,11 @@ public abstract class Context {
      * in the situation where the binding client is a foreground process
      * and the target service is in a background process.
      */
+    //被绑定的服务进程优先级不允许被提到FOREGROUND级别
     public static final int BIND_NOT_FOREGROUND = 0x0004;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: indicates that the client application
      * binding to this service considers the service to be more important than
      * the app itself.  When set, the platform will try to have the out of
@@ -301,6 +307,7 @@ public abstract class Context {
     public static final int BIND_ABOVE_CLIENT = 0x0008;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: allow the process hosting the bound
      * service to go through its normal memory management.  It will be
      * treated more like a running service, allowing the system to
@@ -311,28 +318,34 @@ public abstract class Context {
     public static final int BIND_ALLOW_OOM_MANAGEMENT = 0x0010;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: don't impact the scheduling or
      * memory management priority of the target service's hosting process.
      * Allows the service's process to be managed on the background LRU list
      * just like a regular application process in the background.
      */
+    //被绑定的服务进程不会被OOM列入猎杀对象中。
     public static final int BIND_WAIVE_PRIORITY = 0x0020;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: this service is very important to
      * the client, so should be brought to the foreground process level
      * when the client is.  Normally a process can only be raised to the
      * visibility level by a client, even if that client is in the foreground.
      */
+    //被绑定的服务进程优先级会被提到FOREGROUND级别
     public static final int BIND_IMPORTANT = 0x0040;
 
     /**
+     * ok>>
      * Flag for {@link #bindService}: If binding from an activity, allow the
      * target service's process importance to be raised based on whether the
      * activity is visible to the user, regardless whether another flag is
      * used to reduce the amount that the client process's overall importance
      * is used to impact it.
      */
+    //系统根据service所绑定的activity的重要程度来调整这个service的优先级。
     public static final int BIND_ADJUST_WITH_ACTIVITY = 0x0080;
 
     /**
@@ -420,7 +433,7 @@ public abstract class Context {
      * it will not have direct access to the application's data, though.
      *
      * The purpose of this flag is to allow applications to provide services that are attributed
-     * to the app using the service, rather than the application providing the service.
+     * to the app using the service, rather than the application providing the service. ????
      * </p>
      */
     public static final int BIND_EXTERNAL_SERVICE = 0x80000000;
