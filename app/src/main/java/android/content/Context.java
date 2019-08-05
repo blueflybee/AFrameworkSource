@@ -451,6 +451,7 @@ public abstract class Context {
     public static final int RECEIVER_VISIBLE_TO_INSTANT_APPS = 0x1;
 
     /**
+     * ok>>
      * Returns an AssetManager instance for the application's package.
      * <p>
      * <strong>Note:</strong> Implementations of this method should return
@@ -464,6 +465,7 @@ public abstract class Context {
     public abstract AssetManager getAssets();
 
     /**
+     * ok>>
      * Returns a Resources instance for the application's package.
      * <p>
      * <strong>Note:</strong> Implementations of this method should return
@@ -483,6 +485,7 @@ public abstract class Context {
     public abstract ContentResolver getContentResolver();
 
     /**
+     * ok>>
      * Return the Looper for the main thread of the current process.  This is
      * the thread used to dispatch calls to application components (activities,
      * services, etc).
@@ -496,6 +499,7 @@ public abstract class Context {
     public abstract Looper getMainLooper();
 
     /**
+     * ok>>
      * Return an {@link Executor} that will run enqueued tasks on the main
      * thread associated with this context. This is the thread used to dispatch
      * calls to application components (activities, services, etc).
@@ -506,6 +510,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Return the context of the single, global Application object of the
      * current process.  This generally should only be used if you need a
      * Context whose lifecycle is separate from the current context, that is
@@ -556,6 +561,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Add a new {@link ComponentCallbacks} to the base application of the
      * Context, which will be called at the same times as the ComponentCallbacks
      * methods of activities and other components are called.  Note that you
@@ -570,6 +576,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Remove a {@link ComponentCallbacks} object that was previously registered
      * with {@link #registerComponentCallbacks(ComponentCallbacks)}.
      */
@@ -578,6 +585,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Return a localized, styled CharSequence from the application's package's
      * default string table.
      *
@@ -589,6 +597,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Returns a localized string from the application's package's
      * default string table.
      *
@@ -602,6 +611,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Returns a localized formatted string from the application's package's
      * default string table, substituting the format arguments as defined in
      * {@link java.util.Formatter} and {@link java.lang.String#format}.
@@ -618,6 +628,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Returns a color associated with a particular resource ID and styled for
      * the current theme.
      *
@@ -634,6 +645,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Returns a drawable object associated with a particular resource ID and
      * styled for the current theme.
      *
@@ -650,6 +662,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Returns a color state list associated with a particular resource ID and
      * styled for the current theme.
      *
@@ -666,6 +679,7 @@ public abstract class Context {
     }
 
      /**
+      * ok>>
      * Set the base theme for this context.  Note that this should be called
      * before any views are instantiated in the Context (for example before
      * calling {@link android.app.Activity#setContentView} or
@@ -673,6 +687,7 @@ public abstract class Context {
      *
      * @param resid The style resource describing the theme.
      */
+     //在setContentView和inflate之前设置theme才有效
     public abstract void setTheme(@StyleRes int resid);
 
     /** @hide Needed for some internal implementation...  not public because
@@ -682,6 +697,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Return the Theme object associated with this Context.
      */
     @ViewDebug.ExportedProperty(deepExport = true)
