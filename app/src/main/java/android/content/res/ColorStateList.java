@@ -147,9 +147,11 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Creates a ColorStateList that returns the specified mapping from
      * states to colors.
      */
+    //可以使用代码创建ColorStateList对象，设置states和colors，然后为view设置ColorStateList
     public ColorStateList(int[][] states, @ColorInt int[] colors) {
         mStateSpecs = states;
         mColors = colors;
@@ -158,11 +160,14 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * @return A ColorStateList containing a single color.
      */
+    //根据color为key，在sCache缓存中搜索对应的ColorStateList
     @NonNull
     public static ColorStateList valueOf(@ColorInt int color) {
         synchronized (sCache) {
+            //在缓存列表中搜索sCache，找到则返回
             final int index = sCache.indexOfKey(color);
             if (index >= 0) {
                 final ColorStateList cached = sCache.valueAt(index).get();
@@ -171,10 +176,12 @@ public class ColorStateList extends ComplexColor implements Parcelable {
                 }
 
                 // Prune missing entry.
+                //color值对应的ColorStateList为空，说明这个key是无效的，需要删除无效的映射
                 sCache.removeAt(index);
             }
 
             // Prune the cache before adding new items.
+            //在添加新的ColorStateList前，清空所有的无效映射
             final int N = sCache.size();
             for (int i = N - 1; i >= 0; i--) {
                 if (sCache.valueAt(i).get() == null) {
@@ -182,6 +189,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
                 }
             }
 
+            //没有映射则创建一个放入缓存
             final ColorStateList csl = new ColorStateList(EMPTY, new int[] { color });
             sCache.put(color, new WeakReference<>(csl));
             return csl;
@@ -189,6 +197,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Creates a ColorStateList with the same properties as another
      * ColorStateList.
      * <p>
@@ -211,6 +220,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Creates a ColorStateList from an XML document.
      *
      * @param r Resources against which the ColorStateList should be inflated.
@@ -227,6 +237,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Creates a ColorStateList from an XML document using given a set of
      * {@link Resources} and a {@link Theme}.
      *
@@ -242,11 +253,13 @@ public class ColorStateList extends ComplexColor implements Parcelable {
         final AttributeSet attrs = Xml.asAttributeSet(parser);
 
         int type;
+        //搜索起始位置的tag
         while ((type = parser.next()) != XmlPullParser.START_TAG
                    && type != XmlPullParser.END_DOCUMENT) {
             // Seek parser to start tag.
         }
 
+        //没有搜索到抛出异常
         if (type != XmlPullParser.START_TAG) {
             throw new XmlPullParserException("No start tag found");
         }
@@ -255,6 +268,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Create from inside an XML document. Called on a parser positioned at a
      * tag in an XML document, tries to create a ColorStateList from that tag.
      *
@@ -265,18 +279,22 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     static ColorStateList createFromXmlInner(@NonNull Resources r,
             @NonNull XmlPullParser parser, @NonNull AttributeSet attrs, @Nullable Theme theme)
             throws XmlPullParserException, IOException {
+        //找到第一个标签了，获取标签名称
         final String name = parser.getName();
+        //ColorState list xml文件要求root tag名称为selector，否则视为无效标签
         if (!name.equals("selector")) {
             throw new XmlPullParserException(
                     parser.getPositionDescription() + ": invalid color state list tag " + name);
         }
 
         final ColorStateList colorStateList = new ColorStateList();
+        //开始inflate，把xml文档中的item信息，初始化一个colorStateList对象
         colorStateList.inflate(r, parser, attrs, theme);
         return colorStateList;
     }
 
     /**
+     * ok>>
      * Creates a new ColorStateList that has the same states and colors as this
      * one but where each color has the specified alpha value (0-255).
      *
@@ -287,14 +305,17 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     public ColorStateList withAlpha(int alpha) {
         final int[] colors = new int[mColors.length];
         final int len = colors.length;
+        //给每个color值添加同样的alpha值
         for (int i = 0; i < len; i++) {
             colors[i] = (mColors[i] & 0xFFFFFF) | (alpha << 24);
         }
 
+        //用新的colors创建ColorStateList对象
         return new ColorStateList(mStateSpecs, colors);
     }
 
     /**
+     * ok>>
      * Fill in this object based on the contents of an XML "selector" element.
      */
     private void inflate(@NonNull Resources r, @NonNull XmlPullParser parser,
@@ -316,6 +337,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
 
         while ((type = parser.next()) != XmlPullParser.END_DOCUMENT
                && ((depth = parser.getDepth()) >= innerDepth || type != XmlPullParser.END_TAG)) {
+            //搜索第一个item标签
             if (type != XmlPullParser.START_TAG || depth > innerDepth
                     || !parser.getName().equals("item")) {
                 continue;
@@ -352,6 +374,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
             // Apply alpha modulation. If we couldn't resolve the color or
             // alpha yet, the default values leave us enough information to
             // modulate again during applyTheme().
+            //添加透明度
             final int color = modulateColorAlpha(baseColor, alphaMod);
             if (listSize == 0 || stateSpec.length == 0) {
                 defaultColor = color;
@@ -386,6 +409,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Returns whether a theme can be applied to this color state list, which
      * usually indicates that the color state list has unresolved theme
      * attributes.
@@ -497,6 +521,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
         return super.getChangingConfigurations() | mChangingConfigurations;
     }
 
+    //ok>>
     private int modulateColorAlpha(int baseColor, float alphaMod) {
         if (alphaMod == 1.0f) {
             return baseColor;
@@ -632,8 +657,18 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Updates the default color and opacity.
      */
+    //初始化各个颜色和状态等字段信息
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //    <item android:state_pressed="true"
+    //        android:color="#ffff0000"/> <!-- pressed -->
+    //    <item android:state_focused="true"
+    //        android:color="#ff0000ff"/> <!-- focused -->
+    //    <item android:color="#ff000000"/> <!-- default -->
+    //</selector>
     private void onColorsChanged() {
         int defaultColor = DEFAULT_COLOR;
         boolean isOpaque = true;
@@ -642,8 +677,11 @@ public class ColorStateList extends ComplexColor implements Parcelable {
         final int[] colors = mColors;
         final int N = states.length;
         if (N > 0) {
+            //默认颜色默认选择color数组中第一项
             defaultColor = colors[0];
 
+            //选择默认颜色
+            //把没有state属性的item对应的颜色值设置为默认颜色
             for (int i = N - 1; i > 0; i--) {
                 if (states[i].length == 0) {
                     defaultColor = colors[i];

@@ -59,6 +59,7 @@ import org.xmlpull.v1.XmlPullParser;
  *
  * @see XmlPullParser
  */
+//该接口定义一个属性集合，如xml文档中tag中的各项属性
 public interface AttributeSet {
     /**
      * Returns the number of attributes available in the set.
