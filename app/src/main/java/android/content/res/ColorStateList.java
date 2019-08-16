@@ -489,6 +489,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Returns an appropriately themed color state list.
      *
      * @param t the theme to apply
@@ -555,6 +556,7 @@ public class ColorStateList extends ComplexColor implements Parcelable {
     }
 
     /**
+     * ok>>
      * Indicates whether this color state list is opaque, which means that every
      * color returned from {@link #getColorForState(int[], int)} has an alpha
      * value of 255.
