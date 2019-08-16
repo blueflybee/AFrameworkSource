@@ -870,6 +870,7 @@ public abstract class Context {
     public abstract boolean moveSharedPreferencesFrom(Context sourceContext, String name);
 
     /**
+     * ok>>
      * Delete an existing shared preferences file.
      *
      * @param name The name (unique in the application package) of the shared
