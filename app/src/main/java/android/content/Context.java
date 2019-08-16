@@ -704,6 +704,7 @@ public abstract class Context {
     public abstract Resources.Theme getTheme();
 
     /**
+     * ok>>
      * Retrieve styled attribute information in this Context's theme.  See
      * {@link android.content.res.Resources.Theme#obtainStyledAttributes(int[])}
      * for more information.
@@ -770,7 +771,9 @@ public abstract class Context {
      * ops uid verification will work with the name). */
     public abstract String getOpPackageName();
 
-    /** Return the full application info for this context's package. */
+    /**
+     * ok>>
+     * Return the full application info for this context's package. */
     public abstract ApplicationInfo getApplicationInfo();
 
     /**
@@ -807,6 +810,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Retrieve and hold the contents of the preferences file 'name', returning
      * a SharedPreferences through which you can retrieve and modify its
      * values.  Only one instance of the SharedPreferences object is returned
@@ -828,6 +832,7 @@ public abstract class Context {
     public abstract SharedPreferences getSharedPreferences(String name, @PreferencesMode int mode);
 
     /**
+     * ok>>
      * Retrieve and hold the contents of the preferences file, returning
      * a SharedPreferences through which you can retrieve and modify its
      * values.  Only one instance of the SharedPreferences object is returned
