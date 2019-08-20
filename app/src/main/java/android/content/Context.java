@@ -926,6 +926,7 @@ public abstract class Context {
         throws FileNotFoundException;
 
     /**
+     * ok>>
      * Delete the given private file associated with this Context's
      * application package.
      *
@@ -943,6 +944,7 @@ public abstract class Context {
     public abstract boolean deleteFile(String name);
 
     /**
+     * ok>>
      * Returns the absolute path on the filesystem where a file created with
      * {@link #openFileOutput} is stored.
      * <p>
@@ -961,6 +963,7 @@ public abstract class Context {
     public abstract File getFileStreamPath(String name);
 
     /**
+     * ok>>
      * Returns the absolute path on the filesystem where a file created with
      * {@link #getSharedPreferences(String, int)} is stored.
      * <p>
@@ -976,6 +979,7 @@ public abstract class Context {
     public abstract File getSharedPreferencesPath(String name);
 
     /**
+     * ok>>
      * Returns the absolute path to the directory on the filesystem where all
      * private files belonging to this app are stored. Apps should not use this
      * path directly; they should instead use {@link #getFilesDir()},
@@ -990,9 +994,11 @@ public abstract class Context {
      *
      * @see ApplicationInfo#dataDir
      */
+    //返回/data/data/package name/
     public abstract File getDataDir();
 
     /**
+     * ok>>
      * Returns the absolute path to the directory on the filesystem where files
      * created with {@link #openFileOutput} are stored.
      * <p>
@@ -1010,6 +1016,7 @@ public abstract class Context {
     public abstract File getFilesDir();
 
     /**
+     * ok>>
      * Returns the absolute path to the directory on the filesystem similar to
      * {@link #getFilesDir()}. The difference is that files placed under this
      * directory will be excluded from automatic backup to remote storage. See
@@ -1029,6 +1036,7 @@ public abstract class Context {
      * @see #getDir
      * @see android.app.backup.BackupAgent
      */
+    // TODO: 19-8-20 用户数据备份功能的学习 android自动备份机制 https://developer.android.google.cn/guide/topics/data/backup
     public abstract File getNoBackupFilesDir();
 
     /**
@@ -1116,6 +1124,10 @@ public abstract class Context {
      * @see Environment#isExternalStorageEmulated(File)
      * @see Environment#isExternalStorageRemovable(File)
      */
+    //获取外部存储器或者共享虚拟外部存储器（emulated）的文件路径，如：
+    //该文件夹文件是app内部使用文件，对用户不可见，并在app卸载时会被清除
+    //root = /storage/emulated/0/Android/data/myorg.aframe.aframesourcedemo/files   type == null
+    //music = /storage/emulated/0/Android/data/myorg.aframe.aframesourcedemo/files/Music   type == DIRECTORY_MUSIC
     @Nullable
     public abstract File getExternalFilesDir(@Nullable String type);
 
