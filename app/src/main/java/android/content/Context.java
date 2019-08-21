@@ -1013,6 +1013,7 @@ public abstract class Context {
      * @see #getFileStreamPath
      * @see #getDir
      */
+    //getFilesDir = /data/user/0/myorg.aframe.aframesourcedemo/files
     public abstract File getFilesDir();
 
     /**
@@ -1040,6 +1041,7 @@ public abstract class Context {
     public abstract File getNoBackupFilesDir();
 
     /**
+     * ok>>
      * Returns the absolute path to the directory on the primary shared/external
      * storage device where the application can place persistent files it owns.
      * These files are internal to the applications, and not typically visible
@@ -1128,10 +1130,30 @@ public abstract class Context {
     //该文件夹文件是app内部使用文件，对用户不可见，并在app卸载时会被清除
     //root = /storage/emulated/0/Android/data/myorg.aframe.aframesourcedemo/files   type == null
     //music = /storage/emulated/0/Android/data/myorg.aframe.aframesourcedemo/files/Music   type == DIRECTORY_MUSIC
+
+    ///* Checks if external storage is available for read and write */
+    //public boolean isExternalStorageWritable() {
+    //    String state = Environment.getExternalStorageState();
+    //    if (Environment.MEDIA_MOUNTED.equals(state)) {
+    //        return true;
+    //    }
+    //    return false;
+    //}
+    //
+    ///* Checks if external storage is available to at least read */
+    //public boolean isExternalStorageReadable() {
+    //    String state = Environment.getExternalStorageState();
+    //    if (Environment.MEDIA_MOUNTED.equals(state) ||
+    //        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+    //        return true;
+    //    }
+    //    return false;
+    //}
     @Nullable
     public abstract File getExternalFilesDir(@Nullable String type);
 
     /**
+     * ok>>
      * Returns absolute paths to application-specific directories on all
      * shared/external storage devices where the application can place
      * persistent files it owns. These files are internal to the application,
@@ -1547,9 +1569,11 @@ public abstract class Context {
      * @see #openFileOutput
      * @see #deleteFile
      */
+    //列出/data/data/package name/files/文件夹包含的第一层文件和目录
     public abstract String[] fileList();
 
     /**
+     * ok>>
      * Retrieve, creating if needed, a new directory in which the application
      * can place its own custom data files.  You can use the returned File
      * object to create and access files in this directory.  Note that files
@@ -1572,6 +1596,9 @@ public abstract class Context {
      *
      * @see #openFileOutput(String, int)
      */
+    //System.out.println("getDir = " + getDir("mydir", MODE_PRIVATE));
+    //I/System.out: getDir = /data/data/myorg.aframe.aframesourcedemo/app_mydir
+    //创建或返回/data/data/package name/dirname/的文件对象
     public abstract File getDir(String name, @FileMode int mode);
 
     /**

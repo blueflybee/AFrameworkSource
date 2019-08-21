@@ -29,6 +29,32 @@ import java.util.LinkedList;
 
 /**
  * Provides access to environment variables.
+ *
+ *  该方法用于Returns the current state of the primary "external" storage device.
+ *
+ *  返回值有以下常量：
+ *
+ *  `MEDIA_BAD_REMOVAL`     Sd卡被卸载前已经被移除 。Storage state if the media was removed before it was unmounted.
+ *
+ *  `MEDIA_CHECKING`     Sd卡正在进行磁盘检查。 Storage state if the media is present and being disk-checked.
+ *
+ *  `MEDIA_EJECTING`     Storage state if the media is in the process of being ejected.
+ *
+ *  `MEDIA_MOUNTED`     Sd卡存在，且具有读写权限。Storage state if the media is present and mounted at its mount point with read/write access.
+ *
+ *  `MEDIA_MOUNTED_READ_ONLY`     Sd卡存在，仅具有读权限。Storage state if the media is present and mounted at its mount point with read-only access.
+ *
+ *  `MEDIA_NOFS`     Sd卡存在，但是空白，或者正在使用不受支持的文件系统。Storage state if the media is present but is blank or is using an unsupported filesystem.
+ *
+ *  `MEDIA_REMOVED`     Sd卡被移除。Storage state if the media is not present.
+ *
+ *  `MEDIA_SHARED`     Sd卡未安装，通过USB大容量分享。Storage state if the media is present not mounted, and shared via USB mass storage.
+ *
+ *  `MEDIA_UNKNOWN`     未知状态。Unknown storage state, such as when a path isn't backed by known storage media.
+ *
+ *  `MEDIA_UNMOUNTABLE`     Sd卡存在，但不能被安装。Storage state if the media is present but cannot be mounted.
+ *
+ *  `MEDIA_UNMOUNTED`  Sd卡存在，但未安装。Storage state if the media is present but not mounted.
  */
 public class Environment {
     private static final String TAG = "Environment";
@@ -883,6 +909,7 @@ public class Environment {
     public static final String MEDIA_EJECTING = "ejecting";
 
     /**
+     * ok>>
      * Returns the current state of the primary shared/external storage media.
      *
      * @see #getExternalStorageDirectory()
@@ -892,6 +919,7 @@ public class Environment {
      *         {@link #MEDIA_MOUNTED_READ_ONLY}, {@link #MEDIA_SHARED},
      *         {@link #MEDIA_BAD_REMOVAL}, or {@link #MEDIA_UNMOUNTABLE}.
      */
+    //获取外部存储状态
     public static String getExternalStorageState() {
         final File externalDir = sCurrentUser.getExternalDirs()[0];
         return getExternalStorageState(externalDir);
@@ -906,6 +934,7 @@ public class Environment {
     }
 
     /**
+     * ok>>
      * Returns the current state of the shared/external storage media at the
      * given path.
      *
@@ -925,6 +954,7 @@ public class Environment {
     }
 
     /**
+     * ok>>
      * Returns whether the primary shared/external storage media is physically
      * removable.
      *
@@ -938,6 +968,7 @@ public class Environment {
     }
 
     /**
+     * ok>>
      * Returns whether the shared/external storage media at the given path is
      * physically removable.
      *
@@ -957,6 +988,7 @@ public class Environment {
     }
 
     /**
+     * ok>>
      * Returns whether the primary shared/external storage media is emulated.
      * <p>
      * The contents of emulated storage devices are backed by a private user
@@ -970,12 +1002,14 @@ public class Environment {
      * @see DevicePolicyManager#setStorageEncryption(android.content.ComponentName,
      *      boolean)
      */
+    //外部存储器是否是由内部存储器模拟
     public static boolean isExternalStorageEmulated() {
         final File externalDir = sCurrentUser.getExternalDirs()[0];
         return isExternalStorageEmulated(externalDir);
     }
 
     /**
+     * ok>>
      * Returns whether the shared/external storage media at the given path is
      * emulated.
      * <p>
