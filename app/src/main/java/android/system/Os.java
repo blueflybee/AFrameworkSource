@@ -246,6 +246,7 @@ public final class Os {
     public static int getuid() { return Libcore.os.getuid(); }
 
     /**
+     * ok>>
      * See <a href="http://man7.org/linux/man-pages/man2/getxattr.2.html">getxattr(2)</a>
      */
     public static byte[] getxattr(String path, String name) throws ErrnoException { return Libcore.os.getxattr(path, name); }
@@ -444,6 +445,7 @@ public final class Os {
     public static void remove(String path) throws ErrnoException { Libcore.os.remove(path); }
 
     /**
+     * ok>>
      * See <a href="http://man7.org/linux/man-pages/man2/removexattr.2.html">removexattr(2)</a>.
      */
     public static void removexattr(String path, String name) throws ErrnoException { Libcore.os.removexattr(path, name); }
@@ -534,6 +536,7 @@ public final class Os {
     public static void setuid(int uid) throws ErrnoException { Libcore.os.setuid(uid); }
 
     /**
+     * ok>>
      * See <a href="http://man7.org/linux/man-pages/man2/setxattr.2.html">setxattr(2)</a>
      */
     public static void setxattr(String path, String name, byte[] value, int flags) throws ErrnoException { Libcore.os.setxattr(path, name, value, flags); };

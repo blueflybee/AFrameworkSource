@@ -114,6 +114,7 @@ public class StatFs {
     }
 
     /**
+     * ok>>
      * The number of bytes that are free on the file system, including reserved
      * blocks (that are not available to normal applications). Most applications
      * will want to use {@link #getAvailableBytes()} instead.
@@ -131,6 +132,7 @@ public class StatFs {
     }
 
     /**
+     * ok>>
      * The number of blocks that are free on the file system and available to
      * applications. This corresponds to the Unix {@code statvfs.f_bavail} field.
      */
@@ -139,6 +141,7 @@ public class StatFs {
     }
 
     /**
+     * ok>>
      * The number of bytes that are free on the file system and available to
      * applications.
      */
@@ -147,6 +150,7 @@ public class StatFs {
     }
 
     /**
+     * ok>>
      * The total number of bytes supported by the file system.
      */
     public long getTotalBytes() {

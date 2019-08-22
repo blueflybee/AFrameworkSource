@@ -1581,6 +1581,7 @@ public class StorageManager {
     }
 
     /**
+     * ok>>
      * Return quota size in bytes for all cached data belonging to the calling
      * app on the given storage volume.
      * <p>
@@ -1888,7 +1889,9 @@ public class StorageManager {
     private static final String XATTR_CACHE_GROUP = "user.cache_group";
     private static final String XATTR_CACHE_TOMBSTONE = "user.cache_tombstone";
 
-    /** {@hide} */
+    /**
+     * ok>>
+     *  {@hide} */
     private static void setCacheBehavior(File path, String name, boolean enabled)
             throws IOException {
         if (!path.isDirectory()) {
@@ -1912,7 +1915,9 @@ public class StorageManager {
         }
     }
 
-    /** {@hide} */
+    /**
+     * ok>>
+     *  {@hide} */
     private static boolean isCacheBehavior(File path, String name) throws IOException {
         try {
             Os.getxattr(path.getAbsolutePath(), name);
@@ -1927,6 +1932,7 @@ public class StorageManager {
     }
 
     /**
+     * ok>>
      * Enable or disable special cache behavior that treats this directory and
      * its contents as an entire group.
      * <p>
@@ -1943,11 +1949,15 @@ public class StorageManager {
      * This behavior can only be set on a directory, and it applies recursively
      * to all contained files and directories.
      */
+    //为path所对应的目录开启组模式
+    //该模式下系统把整个目录当作一整个组看待，把该目录中最新的文件修改时间作为整个目录的最新时间
+    //系统根据这个时间值对该组进行统一的操作，如在空间不足时删掉整个组（包含目录和所有子目录、文件）
     public void setCacheBehaviorGroup(File path, boolean group) throws IOException {
         setCacheBehavior(path, XATTR_CACHE_GROUP, group);
     }
 
     /**
+     * ok>>
      * Read the current value set by
      * {@link #setCacheBehaviorGroup(File, boolean)}.
      */
@@ -1956,6 +1966,7 @@ public class StorageManager {
     }
 
     /**
+     * ok>>
      * Enable or disable special cache behavior that leaves deleted cache files
      * intact as tombstones.
      * <p>
@@ -1971,6 +1982,8 @@ public class StorageManager {
      * that all cached data be cleared.
      * </p>
      */
+    //该模式下系统不是完全删除一个对象，而是留下一个长度为0的文件
+    //这样可以比较方便的区分一个文件是创建后又被删除还是根本没有被创建过
     public void setCacheBehaviorTombstone(File path, boolean tombstone) throws IOException {
         setCacheBehavior(path, XATTR_CACHE_TOMBSTONE, tombstone);
     }

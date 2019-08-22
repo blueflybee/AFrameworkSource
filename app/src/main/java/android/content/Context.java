@@ -1216,6 +1216,7 @@ public abstract class Context {
     public abstract File[] getExternalFilesDirs(String type);
 
     /**
+     * ok>>
      * Return the primary shared/external storage directory where this
      * application's OBB files (if there are any) can be found. Note if the
      * application does not have any OBB files, this directory may not exist.
@@ -1287,9 +1288,13 @@ public abstract class Context {
      * @see Environment#isExternalStorageEmulated(File)
      * @see Environment#isExternalStorageRemovable(File)
      */
+    //OBB（Opaque Binary Blob）文件格式，是安卓游戏通用数据包。
+    // 在一些大型游戏上较为常见，同时还附以Data文件，亦或是md5.dat文件出现。
+    // 通常在游戏开始前，程序会自动将obb解包/sdcard/Android/obb目录下。但也有游戏不会解包，直接读
     public abstract File getObbDir();
 
     /**
+     * ok>>
      * Returns absolute paths to application-specific directories on all
      * shared/external storage devices where the application's OBB files (if
      * there are any) can be found. Note if the application does not have any
@@ -1333,6 +1338,7 @@ public abstract class Context {
     public abstract File[] getObbDirs();
 
     /**
+     * ok>>
      * Returns the absolute path to the application specific cache directory on
      * the filesystem.
      * <p>
@@ -1370,6 +1376,7 @@ public abstract class Context {
     public abstract File getCacheDir();
 
     /**
+     * ok>>
      * Returns the absolute path to the application specific cache directory on
      * the filesystem designed for storing cached code.
      * <p>
@@ -1391,6 +1398,7 @@ public abstract class Context {
     public abstract File getCodeCacheDir();
 
     /**
+     * ok>>
      * Returns absolute path to application-specific directory on the primary
      * shared/external storage device where the application can place cache
      * files it owns. These files are internal to the application, and not
@@ -1448,6 +1456,7 @@ public abstract class Context {
     public abstract File getExternalCacheDir();
 
     /**
+     * ok>>
      * Returns absolute path to application-specific directory in the preloaded cache.
      * <p>Files stored in the cache directory can be deleted when the device runs low on storage.
      * There is no guarantee when these files will be deleted.
@@ -1458,6 +1467,7 @@ public abstract class Context {
     public abstract File getPreloadsFileCache();
 
     /**
+     * ok>>
      * Returns absolute paths to application-specific directories on all
      * shared/external storage devices where the application can place cache
      * files it owns. These files are internal to the application, and not
@@ -1516,6 +1526,7 @@ public abstract class Context {
     public abstract File[] getExternalCacheDirs();
 
     /**
+     * ok>>
      * Returns absolute paths to application-specific directories on all
      * shared/external storage devices where the application can place media
      * files. These files are scanned and made available to other apps through
