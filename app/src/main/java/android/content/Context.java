@@ -1662,6 +1662,7 @@ public abstract class Context {
             @Nullable DatabaseErrorHandler errorHandler);
 
     /**
+     * ok>>
      * Move an existing database file from the given source storage context to
      * this context. This is typically used to migrate data between storage
      * locations after an upgrade, such as migrating to device protected
@@ -1679,6 +1680,7 @@ public abstract class Context {
     public abstract boolean moveDatabaseFrom(Context sourceContext, String name);
 
     /**
+     * ok>>
      * Delete an existing private SQLiteDatabase associated with this Context's
      * application package.
      *
@@ -1692,6 +1694,7 @@ public abstract class Context {
     public abstract boolean deleteDatabase(String name);
 
     /**
+     * ok>>
      * Returns the absolute path on the filesystem where a database created with
      * {@link #openOrCreateDatabase} is stored.
      * <p>
@@ -1708,6 +1711,7 @@ public abstract class Context {
     public abstract File getDatabasePath(String name);
 
     /**
+     * ok>>
      * Returns an array of strings naming the private databases associated with
      * this Context's application package.
      *
@@ -1774,6 +1778,7 @@ public abstract class Context {
     public abstract void clearWallpaper() throws IOException;
 
     /**
+     * ok>>
      * Same as {@link #startActivity(Intent, Bundle)} with no options
      * specified.
      *
@@ -1787,6 +1792,7 @@ public abstract class Context {
     public abstract void startActivity(@RequiresPermission Intent intent);
 
     /**
+     * ok>>
      * Version of {@link #startActivity(Intent)} that allows you to specify the
      * user the activity will be started for.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -1801,6 +1807,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Launch a new activity.  You will not receive any information about when
      * the activity exits.
      *
@@ -1829,6 +1836,7 @@ public abstract class Context {
             @Nullable Bundle options);
 
     /**
+     * ok>>
      * Version of {@link #startActivity(Intent, Bundle)} that allows you to specify the
      * user the activity will be started for.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -1848,6 +1856,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Version of {@link #startActivity(Intent, Bundle)} that returns a result to the caller. This
      * is only supported for Views and Fragments.
      * @param who The identifier for the calling element that will receive the result.
@@ -1867,6 +1876,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Identifies whether this Context instance will be able to process calls to
      * {@link #startActivityForResult(String, Intent, int, Bundle)}.
      * @hide
@@ -1876,6 +1886,7 @@ public abstract class Context {
     }
 
     /**
+     * ok>>
      * Same as {@link #startActivities(Intent[], Bundle)} with no options
      * specified.
      *
@@ -1889,6 +1900,7 @@ public abstract class Context {
     public abstract void startActivities(@RequiresPermission Intent[] intents);
 
     /**
+     * ok>>
      * Launch multiple new activities.  This is generally the same as calling
      * {@link #startActivity(Intent)} for the first Intent in the array,
      * that activity during its creation calling {@link #startActivity(Intent)}
@@ -1912,9 +1924,12 @@ public abstract class Context {
      * @see #startActivities(Intent[])
      * @see PackageManager#resolveActivity
      */
+    //最后一个intent对应的activity会被创建并显示，其他都不会立即被创建
+    //当用户点击back键时，前一个activity才会被创建出来，其他以此类推
     public abstract void startActivities(@RequiresPermission Intent[] intents, Bundle options);
 
     /**
+     * ok>>
      * @hide
      * Launch multiple new activities.  This is generally the same as calling
      * {@link #startActivity(Intent)} for the first Intent in the array,
@@ -1994,11 +2009,13 @@ public abstract class Context {
      * @see #startActivity(Intent, Bundle)
      * @see #startIntentSender(IntentSender, Intent, int, int, int)
      */
+    // TODO: 19-8-23  IntentSender如何使用
     public abstract void startIntentSender(IntentSender intent, @Nullable Intent fillInIntent,
             @Intent.MutableFlags int flagsMask, @Intent.MutableFlags int flagsValues,
             int extraFlags, @Nullable Bundle options) throws IntentSender.SendIntentException;
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers.  This
      * call is asynchronous; it returns immediately, and you will continue
      * executing while the receivers are run.  No results are propagated from
@@ -2021,6 +2038,7 @@ public abstract class Context {
     public abstract void sendBroadcast(@RequiresPermission Intent intent);
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers, allowing
      * an optional required permission to be enforced.  This
      * call is asynchronous; it returns immediately, and you will continue
@@ -2044,11 +2062,29 @@ public abstract class Context {
      * @see #sendOrderedBroadcast(Intent, String)
      * @see #sendOrderedBroadcast(Intent, String, BroadcastReceiver, Handler, int, String, Bundle)
      */
+    //使用sendBroadcast(Intent intent, receiverPermission) 发送权限广播，只有具有这个权限的应用才能处理这个广播。
+    //// 广播发送
+    //Intent intent = new Intent("com.xiuxiuing.action");
+    //sendBroadcast(intent,"com.xiuxiuing.custom.permission");
+    //
+    //// 广播接收
+    //// 在接收广播的APP 的 Manifest.xml文件中添加自定义权限
+    // <uses-permission android:name="com.xiuxiuing.custom.permission" />
+    // <permission
+    //        android:name="com.xiuxiuing.custom.permission"
+    //        android:protectionLevel="normal"></permission>
+    //
+    //// 注册广播接收器
+    // IntentFilter filter = new IntentFilter();
+    // filter.addAction("com.xiuxiuing.action");
+    // mReceiver = new MyBroadCastReceiver();
+    // registerReceiver(mReceiver, filter);
     public abstract void sendBroadcast(@RequiresPermission Intent intent,
             @Nullable String receiverPermission);
 
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers, allowing
      * an array of required permissions to be enforced.  This call is asynchronous; it returns
      * immediately, and you will continue executing while the receivers are run.  No results are
@@ -2075,6 +2111,7 @@ public abstract class Context {
             String[] receiverPermissions);
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers, allowing
      * an array of required permissions to be enforced.  This call is asynchronous; it returns
      * immediately, and you will continue executing while the receivers are run.  No results are
@@ -2102,6 +2139,7 @@ public abstract class Context {
             String[] receiverPermissions);
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers, allowing
      * an optional required permission to be enforced.  This
      * call is asynchronous; it returns immediately, and you will continue
@@ -2134,6 +2172,7 @@ public abstract class Context {
             @Nullable Bundle options);
 
     /**
+     * ok>>
      * Like {@link #sendBroadcast(Intent, String)}, but also allows specification
      * of an associated app op as per {@link android.app.AppOpsManager}.
      * @hide
@@ -2142,6 +2181,7 @@ public abstract class Context {
             String receiverPermission, int appOp);
 
     /**
+     * ok>>
      * Broadcast the given intent to all interested BroadcastReceivers, delivering
      * them one at a time to allow more preferred receivers to consume the
      * broadcast before it is delivered to less preferred receivers.  This
@@ -2161,10 +2201,33 @@ public abstract class Context {
      * @see #sendBroadcast(Intent)
      * @see #sendOrderedBroadcast(Intent, String, BroadcastReceiver, Handler, int, String, Bundle)
      */
+    // BroadcastReceiver所对应的广播分两类：普通广播和有序广播。
+    //普通广播通过Context.sendBroadcast()方法来发送。它是完全异步的。
+    //所有的receivers接收器的执行顺序不确定。 因此，所有的receivers接收器接收broadcast的顺序不确定。
+    //这种方式效率更高。但是BroadcastReceiver无法使用setResult系列，getResult系列及abort系列API
+    //有序广播是通过Context.sendOrderedBroadcast来发送。所有的receiver依次执行。
+    //BroadcastReceiver可以使用setResult系列函数来结果传给下一个BroadcastReceiver，通过getResult系列函数来取得上个BroadcastReceiver返回的结果，并可以abort系列函数来让系统丢弃该广播让，使用该广播不再传送到别的BroadcastReceiver。
+    //可以通过在intent-filter中设置android:priority属性来设置receiver的优先级。优先级相同的receiver其执行顺序不确定。
+    //如果BroadcastReceiver是代码中注册的话，且其intent-filter拥有相同android:priority属性的话，先注册的将先收到广播。
+    //
+    //有序广播，即从优先级别最高的广播接收器开始接收，接收完了如果没有丢弃，就下传给下一个次高优先级别的广播接收器进行处理，依次类推，直到最后。
+    //
+    //这里接收短信的广播是有序广播，因此可以设置你自己的广播接收器的级别高于系统原来的级别，就可以拦截短信，并且不存收件箱，也不会有来信提示音。
+    //
+    //实现方法是：
+    //
+    //<receiver android:name=".SmsReceiver" >
+    //   <intent-filter android:priority="100">
+    //    <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+    //   </intent-filter>
+    //</receiver>
+    //
+    //里面的android:priority="100"就是设定广播接收器的级别，这个值从1000～-1000，数值越大，优先级别就越高。
     public abstract void sendOrderedBroadcast(@RequiresPermission Intent intent,
             @Nullable String receiverPermission);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent)} that allows you to
      * receive data back from the broadcast.  This is accomplished by
      * supplying your own BroadcastReceiver when calling, which will be
@@ -2210,6 +2273,7 @@ public abstract class Context {
             @Nullable Bundle initialExtras);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent)} that allows you to
      * receive data back from the broadcast.  This is accomplished by
      * supplying your own BroadcastReceiver when calling, which will be
@@ -2259,6 +2323,7 @@ public abstract class Context {
             int initialCode, @Nullable String initialData, @Nullable Bundle initialExtras);
 
     /**
+     * ok>>
      * Like {@link #sendOrderedBroadcast(Intent, String, BroadcastReceiver, android.os.Handler,
      * int, String, android.os.Bundle)}, but also allows specification
      * of an associated app op as per {@link android.app.AppOpsManager}.
@@ -2270,6 +2335,7 @@ public abstract class Context {
             Bundle initialExtras);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -2282,6 +2348,7 @@ public abstract class Context {
             UserHandle user);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent, String)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -2300,6 +2367,7 @@ public abstract class Context {
             UserHandle user, @Nullable String receiverPermission);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent, String, Bundle)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -2322,6 +2390,7 @@ public abstract class Context {
             UserHandle user, @Nullable String receiverPermission, @Nullable Bundle options);
 
     /**
+     * ok>>
      * Version of {@link #sendBroadcast(Intent, String)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -2343,6 +2412,7 @@ public abstract class Context {
             UserHandle user, @Nullable String receiverPermission, int appOp);
 
     /**
+     * ok>>
      * Version of
      * {@link #sendOrderedBroadcast(Intent, String, BroadcastReceiver, Handler, int, String, Bundle)}
      * that allows you to specify the
@@ -2378,6 +2448,7 @@ public abstract class Context {
             @Nullable  Bundle initialExtras);
 
     /**
+     * ok>>
      * Similar to above but takes an appOp as well, to enforce restrictions.
      * @see #sendOrderedBroadcastAsUser(Intent, UserHandle, String,
      *       BroadcastReceiver, Handler, int, String, Bundle)
@@ -2390,6 +2461,7 @@ public abstract class Context {
             @Nullable  Bundle initialExtras);
 
     /**
+     * ok>>
      * Similar to above but takes an appOp as well, to enforce restrictions, and an options Bundle.
      * @see #sendOrderedBroadcastAsUser(Intent, UserHandle, String,
      *       BroadcastReceiver, Handler, int, String, Bundle)
@@ -2402,6 +2474,7 @@ public abstract class Context {
             @Nullable String initialData, @Nullable  Bundle initialExtras);
 
     /**
+     * ok>>
      * <p>Perform a {@link #sendBroadcast(Intent)} that is "sticky," meaning the
      * Intent you are sending stays around after the broadcast is complete,
      * so that others can quickly retrieve that data through the return
@@ -2427,6 +2500,7 @@ public abstract class Context {
     public abstract void sendStickyBroadcast(@RequiresPermission Intent intent);
 
     /**
+     * ok>>
      * <p>Version of {@link #sendStickyBroadcast} that allows you to
      * receive data back from the broadcast.  This is accomplished by
      * supplying your own BroadcastReceiver when calling, which will be
@@ -2480,6 +2554,7 @@ public abstract class Context {
             @Nullable Bundle initialExtras);
 
     /**
+     * ok>>
      * <p>Remove the data previously sent with {@link #sendStickyBroadcast},
      * so that it is as if the sticky broadcast had never happened.
      *
@@ -2498,6 +2573,7 @@ public abstract class Context {
     public abstract void removeStickyBroadcast(@RequiresPermission Intent intent);
 
     /**
+     * ok>>
      * <p>Version of {@link #sendStickyBroadcast(Intent)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
@@ -2524,6 +2600,7 @@ public abstract class Context {
             UserHandle user);
 
     /**
+     * ok>>
      * @hide
      * This is just here for sending CONNECTIVITY_ACTION.
      */
@@ -2536,6 +2613,7 @@ public abstract class Context {
             UserHandle user, Bundle options);
 
     /**
+     * ok>>
      * <p>Version of
      * {@link #sendStickyOrderedBroadcast(Intent, BroadcastReceiver, Handler, int, String, Bundle)}
      * that allows you to specify the
@@ -2578,6 +2656,7 @@ public abstract class Context {
             @Nullable Bundle initialExtras);
 
     /**
+     * ok>>
      * <p>Version of {@link #removeStickyBroadcast(Intent)} that allows you to specify the
      * user the broadcast will be sent to.  This is not available to applications
      * that are not pre-installed on the system image.
