@@ -369,6 +369,7 @@ public abstract class BroadcastReceiver {
     }
 
     /**
+     * ok>>
      * Provide a binder to an already-bound service.  This method is synchronous
      * and will not start the target service if it is not present, so it is safe
      * to call from {@link #onReceive}.

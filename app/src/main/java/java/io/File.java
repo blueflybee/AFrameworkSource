@@ -1757,6 +1757,7 @@ public class File
     /* -- Disk usage -- */
 
     /**
+     * ok>>
      * Returns the size of the partition <a href="#partName">named</a> by this
      * abstract pathname.
      *
@@ -1784,6 +1785,7 @@ public class File
     }
 
     /**
+     * ok>>
      * Returns the number of unallocated bytes in the partition <a
      * href="#partName">named</a> by this abstract path name.
      *
@@ -1823,6 +1825,7 @@ public class File
 
     // Android-added: Replaced generic platform info with Android specific one.
     /**
+     * ok>>
      * Returns the number of bytes available to this virtual machine on the
      * partition <a href="#partName">named</a> by this abstract pathname.  When
      * possible, this method checks for write permissions and other operating

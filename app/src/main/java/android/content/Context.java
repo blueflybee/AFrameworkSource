@@ -1149,6 +1149,15 @@ public abstract class Context {
     //    }
     //    return false;
     //}
+
+
+    // 重点:
+    // All Android devices have two file storage areas: internal storage and external storage.
+    // These names come from the early days of Android, when most devices offered built-in non-volatile memory (internal storage),
+    // plus a removable storage medium such as a micro SD card (external storage).
+    // Many devices now divide the permanent storage space into separate "internal" and "external" partitions.
+    // So even without a removable storage medium, these two storage spaces always exist,
+    // and the API behavior is the same regardless of whether the external storage is removable.
     @Nullable
     public abstract File getExternalFilesDir(@Nullable String type);
 

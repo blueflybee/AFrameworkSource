@@ -104,6 +104,28 @@ import java.util.concurrent.atomic.AtomicInteger;
  * OBB, there is no guarantee that a read from that OBB will produce the
  * expected output.
  */
+//All Android devices have two file storage areas: internal storage and external storage.
+// These names come from the early days of Android, when most devices offered built-in non-volatile memory (internal storage),
+// plus a removable storage medium such as a micro SD card (external storage).
+// Many devices now divide the permanent storage space into separate "internal" and "external" partitions.
+// So even without a removable storage medium, these two storage spaces always exist, and the API behavior is the same regardless of whether the external storage is removable.
+//Because the external storage might be removable, there are some differences between these two options as follows.
+
+//1.Internal storage:
+//It's always available.
+//Files saved here are accessible by only your app.
+//When the user uninstalls your app, the system removes all your app's files from internal storage.
+//Internal storage is best when you want to be sure that neither the user nor other apps can access your files.
+
+
+
+
+//2.External storage:
+//It's not always available, because the user can mount the external storage as USB storage and in some cases remove it from the device.
+//It's world-readable, so files saved here may be read outside of your control.
+//When the user uninstalls your app, the system removes your app's files from here only if you save them in the directory from getExternalFilesDir().
+//External storage is the best place for files that don't require access restrictions and for files that you want to share with other apps or allow the user to access with a computer.
+
 @SystemService(Context.STORAGE_SERVICE)
 public class StorageManager {
     private static final String TAG = "StorageManager";
