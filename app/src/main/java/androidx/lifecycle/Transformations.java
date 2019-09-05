@@ -79,6 +79,7 @@ public class Transformations {
     }
 
     /**
+     * ok>>
      * Returns a {@code LiveData} mapped from the input {@code source} {@code LiveData} by applying
      * {@code switchMapFunction} to each value set on {@code source}.
      * <p>
@@ -138,18 +139,25 @@ public class Transformations {
 
             @Override
             public void onChanged(@Nullable X x) {
+                //source中的数据一发生变化，就调用onChanged方法
+                // 先应用转换方法转换出目标LiveData<Y>
                 LiveData<Y> newLiveData = switchMapFunction.apply(x);
+                //如果newLiveData和老的LiveData是同一个，就不需要处理
                 if (mSource == newLiveData) {
                     return;
                 }
+                //移除老的LiveData<Y>
                 if (mSource != null) {
                     result.removeSource(mSource);
                 }
+                //引用新的LiveData<Y>
                 mSource = newLiveData;
+                //重新添加新的LiveData<Y>
                 if (mSource != null) {
                     result.addSource(mSource, new Observer<Y>() {
                         @Override
                         public void onChanged(@Nullable Y y) {
+                          //为app观察的MediatorLiveData设置新值
                             result.setValue(y);
                         }
                     });

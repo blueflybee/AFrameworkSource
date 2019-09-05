@@ -25,6 +25,7 @@ import androidx.arch.core.internal.SafeIterableMap;
 import java.util.Map;
 
 /**
+ * ok>>
  * {@link LiveData} subclass which may observe other {@code LiveData} objects and react on
  * {@code OnChanged} events from them.
  * <p>
@@ -70,6 +71,7 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
     private SafeIterableMap<LiveData<?>, Source<?>> mSources = new SafeIterableMap<>();
 
     /**
+     * ok>>
      * Starts to listen the given {@code source} LiveData, {@code onChanged} observer will be called
      * when {@code source} value was changed.
      * <p>
@@ -98,6 +100,7 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
     }
 
     /**
+     * ok>>
      * Stops to listen the given {@code LiveData}.
      *
      * @param toRemote {@code LiveData} to stop to listen

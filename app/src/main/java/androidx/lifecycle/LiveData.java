@@ -411,6 +411,7 @@ public abstract class LiveData<T> {
             if (wasInactive && mActive) {
                 onActive();
             }
+            //所有observer都处于非活跃状态，并且生命周期owner处于非活跃状态时回调
             if (LiveData.this.mActiveCount == 0 && !mActive) {
                 onInactive();
             }
